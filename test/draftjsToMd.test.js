@@ -270,7 +270,7 @@ describe('draftjsToMd', () => {
       ]
     };
     const expectedMarkdown =
-      '*First __content__* block.\n*Second __content__* block.\n*Third __content__* block.';
+      '*First __content__* block.\n\n*Second __content__* block.\n\n*Third __content__* block.';
     draftjsToMd(raw).should.equal(expectedMarkdown);
   });
 
@@ -318,7 +318,7 @@ describe('draftjsToMd', () => {
         }
       ]
     };
-    const expectedMarkdown = '__A__ [b]\n__C__ [d]\n__Want more__';
+    const expectedMarkdown = '__A__ [b]\n\n__C__ [d]\n\n__Want more__';
     draftjsToMd(raw).should.equal(expectedMarkdown);
   });
 
