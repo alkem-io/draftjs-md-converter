@@ -1,5 +1,8 @@
+src
 demo
 test
-.eslintrc.js
 .github
-index.js
+build.js
+.eslintrc.js
+.prettierrc
+.idea

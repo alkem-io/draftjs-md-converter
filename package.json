@@ -1,6 +1,6 @@
 {
   "name": "@alkemio/draftjs-md-converter",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Converter for converting Draft.js state into Markdown and vice versa",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -14,8 +14,8 @@
     "test": "$(npm bin)/mocha",
     "test-dev": "$(npm bin)/mocha --compilers js:babel-register --watch",
     "test-brk": "$(npm bin)/mocha --debug-brk",
-    "compile": "rm -rf dist && mkdir dist && node build.js",
-    "prepublish": "npm run compile",
+    "build": "rm -rf dist && mkdir dist && node build.js",
+    "prepare": "npm run build",
     "precommit": "lint-staged",
     "deploy-demo": "cd demo && yarn build && gh-pages -d build"
   },
