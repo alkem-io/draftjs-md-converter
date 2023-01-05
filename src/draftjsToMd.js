@@ -180,7 +180,21 @@ function draftjsToMd(raw, extraMarkdownDict) {
       returnString = applyWrappingBlockStyle(block.type, returnString);
       returnString = applyAtomicStyle(block, raw.entityMap, returnString);
 
-      return returnString;
+      return {
+        blockType: block.type,
+        returnString
+      };
+    })
+    .flatMap(({ blockType, returnString }, i, blocks) => {
+      const nextBlock = i === blocks.length - 1 ? undefined : blocks[i + 1];
+      if (
+        nextBlock &&
+        ((blockType === 'unstyled' && blockType === nextBlock.blockType) ||
+          (blockType.endsWith('-list-item') && blockType !== nextBlock.blockType))
+      ) {
+        return [returnString, ''];
+      }
+      return [returnString];
     })
     .join('\n');
 }

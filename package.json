@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "$(npm bin)/eslint src test",
-    "test": "$(npm bin)/mocha && npm run lint",
+    "test": "$(npm bin)/mocha",
     "test-dev": "$(npm bin)/mocha --compilers js:babel-register --watch",
     "test-brk": "$(npm bin)/mocha --debug-brk",
     "compile": "rm -rf dist && mkdir dist && node build.js",

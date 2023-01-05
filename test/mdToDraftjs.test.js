@@ -7,15 +7,7 @@ describe('mdToDraftjs', () => {
   it('returns empty text correctly', () => {
     const markdown = '';
     const expectedDraftjs = {
-      blocks: [
-        {
-          text: '',
-          type: 'unstyled',
-          depth: 0,
-          inlineStyleRanges: [],
-          entityRanges: []
-        }
-      ],
+      blocks: [],
       entityMap: {
         type: '',
         mutability: '',
@@ -258,9 +250,77 @@ describe('mdToDraftjs', () => {
     resultDraftJs.should.deep.equal(expectedDraftjs);
   });
 
-  it('converts several paragraphs to markdown correctly', () => {
+  it('converts text with multiple line breaks to a single block', () => {
     const markdown =
       '*First __content__* block.\n*Second __content__* block.\n*Third __content__* block.';
+    const expectedDraftjs = {
+      blocks: [
+        {
+          text: 'First content block. Second content block. Third content block.',
+          type: 'unstyled',
+          depth: 0,
+          inlineStyleRanges: [
+            {
+              offset: 0,
+              length: 6,
+              style: 'ITALIC'
+            },
+            {
+              offset: 6,
+              length: 7,
+              style: 'ITALIC'
+            },
+            {
+              offset: 6,
+              length: 7,
+              style: 'BOLD'
+            },
+            {
+              offset: 21,
+              length: 7,
+              style: 'ITALIC'
+            },
+            {
+              offset: 28,
+              length: 7,
+              style: 'ITALIC'
+            },
+            {
+              offset: 28,
+              length: 7,
+              style: 'BOLD'
+            },
+            {
+              offset: 43,
+              length: 6,
+              style: 'ITALIC'
+            },
+            {
+              offset: 49,
+              length: 7,
+              style: 'ITALIC'
+            },
+            {
+              offset: 49,
+              length: 7,
+              style: 'BOLD'
+            }
+          ],
+          entityRanges: []
+        }
+      ],
+      entityMap: {
+        type: '',
+        mutability: '',
+        data: ''
+      }
+    };
+    mdToDraftjs(markdown).should.deep.equal(expectedDraftjs);
+  });
+
+  it('converts several paragraphs to markdown correctly', () => {
+    const markdown =
+      '*First __content__* block.\n\n*Second __content__* block.\n\n*Third __content__* block.';
     const expectedDraftjs = {
       blocks: [
         {

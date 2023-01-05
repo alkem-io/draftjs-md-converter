@@ -66,10 +66,20 @@ const joinCodeBlocks = splitMd => {
 };
 
 const splitMdBlocks = md => {
-  const splitMd = md.split('\n');
+  const ast = parse(md);
+
+  const splitMd = ast.children.flatMap(block => {
+    if (block.type === 'List' || block.type === 'CodeBlock') {
+      return block.raw.split('\n');
+    }
+    if (block.type === 'Paragraph') {
+      return [block.raw.replaceAll('\n', ' ')];
+    }
+    return [block.raw];
+  });
 
   // Process the split markdown include the
-  // one syntax where there's an block level opening
+  // one syntax where there's a block level opening
   // and closing symbol with content in the middle.
   const splitMdWithCodeBlocks = joinCodeBlocks(splitMd);
   return splitMdWithCodeBlocks;
