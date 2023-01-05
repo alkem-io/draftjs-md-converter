@@ -1,4 +1,4 @@
-declare module "draftjs-md-converter" {
+declare module "@alkemio/draftjs-md-converter" {
   import type { Syntax as ASTNodeTypes } from "@textlint/markdown-to-ast";
   import type { RawDraftContentState } from "draft-js";
   export function draftjsToMd(

@@ -1,6 +1,6 @@
 {
-  "name": "draftjs-md-converter",
-  "version": "1.5.2",
+  "name": "@alkemio/draftjs-md-converter",
+  "version": "1.6.2",
   "description": "Converter for converting Draft.js state into Markdown and vice versa",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -14,8 +14,8 @@
     "test": "$(npm bin)/mocha",
     "test-dev": "$(npm bin)/mocha --compilers js:babel-register --watch",
     "test-brk": "$(npm bin)/mocha --debug-brk",
-    "compile": "rm -rf dist && mkdir dist && node build.js",
-    "prepublish": "npm run compile",
+    "build": "rm -rf dist && mkdir dist && node build.js",
+    "prepare": "npm run build",
     "precommit": "lint-staged",
     "deploy-demo": "cd demo && yarn build && gh-pages -d build"
   },
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kadikraman/draftjs-md-converter.git"
+    "url": "git+https://github.com/alkem-io/draftjs-md-converter.git"
   },
   "keywords": [
     "Draft.js",
@@ -38,11 +38,10 @@
     "text",
     "editor"
   ],
-  "author": "Kadi Kraman",
   "bugs": {
-    "url": "https://github.com/kadikraman/draftjs-md-converter/issues"
+    "url": "https://github.com/alkem-io/draftjs-md-converter/issues"
   },
-  "homepage": "https://kadikraman.github.io/draftjs-md-converter",
+  "homepage": "https://alkem-io.github.io/draftjs-md-converter",
   "devDependencies": {
     "@babel/core": "7.11.6",
     "babel-eslint": "^10.1.0",
